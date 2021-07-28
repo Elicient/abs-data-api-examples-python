@@ -1,6 +1,6 @@
 import authenticate
 import data
-import queries
+from examples import queries
 import pandas as pd
 
 def run_example():

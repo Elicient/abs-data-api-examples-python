@@ -29,3 +29,24 @@ def deals_summary_statistics(shelves):
             "LoanAssetCutoff.weightedAverageInterestRateAtCutoff"
         ]
     }
+
+
+def stratifications(stratification_def, measures_def, bloomberg_deal_name, asset_pool_id=1):
+    return {
+        "dimensions": list(set([b["field"] for b in stratification_def["buckets"]])),
+        "measures": list(set([val for sublist in
+                              [[m["field"]] if "field" in m else [m["weightingField"], m["weightedField"]] for m in
+                               measures_def] for val in sublist])),
+        "filters": [
+            {
+                "member": "Deal.bloombergName",
+                "operator": "equals",
+                "values": [bloomberg_deal_name]
+            },
+            {
+                "member": "AssetPool.assetPoolId",
+                "operator": "equals",
+                "values": [str(asset_pool_id)]
+            }
+        ]
+    }

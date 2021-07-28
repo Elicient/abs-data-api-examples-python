@@ -30,6 +30,7 @@ def load(client, query):
 
     if not result.ok:
         print(contents)
+        print(query)
         raise ValueError("Data API request was not successful")
 
     return contents["data"]

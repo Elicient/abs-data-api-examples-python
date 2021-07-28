@@ -142,4 +142,4 @@ ordered.
 Elicient's API is based on the [Cube.js](https://cube.dev/docs/query-format) data engine.  For specifics on formatting
 queries, please refer to [Cube.js' query format documentation](https://cube.dev/docs/query-format). 
 
-To see an example query, please refer to the code file [queries.py](queries.py).
+To see an example query, please refer to the code file [queries.py](examples/queries.py).
