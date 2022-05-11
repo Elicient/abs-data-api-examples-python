@@ -47,11 +47,12 @@ def stratify(data, stratification_definition, stratification_measures):
     for datum in data:
         matched_buckets = [b for b in buckets if
                            b["field"] in datum and datum[b["field"]] is not None and (
-                                       "exactly" not in b and ("min" not in b or (
-                                       datum[b["field"]] > b["min"])) and (
-                                               "max" not in b or (
-                                               b["field"] in datum and datum[b["field"]] <= b["max"]))) or (
-                                       "exactly" in b and datum[b["field"]] == b["exactly"])]
+                                   "exactly" not in b and ("min" not in b or (
+                                   datum[b["field"]] >= b["min"])) and (
+                                           "max" not in b or (
+                                           b["field"] in datum and datum[b["field"]] < b["max"]))) or (
+                                   "exactly" in b and (datum[b["field"]] == b["exactly"]
+                                                       or datum[b["field"]] is None and b["exactly"] == False))]
         if len(matched_buckets) > 0:
             matched_buckets[0]["values"].append(datum)
 

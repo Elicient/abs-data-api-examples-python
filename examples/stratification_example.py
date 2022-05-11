@@ -446,6 +446,8 @@ def run_example():
             data.load(client, stratification_query(stratification_definitions[stratification], stratification_measures,
                                                    bloomberg_deal_name, asset_pool_id)),
             stratification_definitions[stratification], stratification_measures))
+        df.insert(2,"count pct of total", df['count'] / df['count'].sum())
+        df.insert(4,"balance pct of total", df['balance'] / df['balance'].sum())
         print(stratification)
         print(df.to_markdown())
         print("\r\n\r\n")
